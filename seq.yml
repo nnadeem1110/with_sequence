@@ -1,0 +1,12 @@
+---
+        - name: This playbook is all about how you add multiple users in sequence using while_sequence
+          hosts: test2
+          become: true
+          tasks:
+                  - name: create users in sequence
+                    user:
+                            name: "{{ item }}"
+                            state: present
+                    with_sequence: start=1 end=20 format=testuser%1d #The starting point is 1 and end 20. user is testuser and the "%1: will add numubers in the sequence and "d" is used for decimal numbersi. if you want to add odd or even numbers users u can use "stride". ex: stride=1 this will add all odd number users
+
+
